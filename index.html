@@ -50,12 +50,27 @@
 			</div>
 		</div>
 	</div>
-	<audio id="audio" autoplay preload="auto">
+	<audio id="audios" autoplay preload="auto">
 		<source src="getvoice.mp3" type="audio/mpeg" />
 	</audio>	
 	
 	<script type="text/javascript">
-		
+		function audioAutoPlay(id){  
+    var audio = document.getElementById(id),
+        play = function(){  
+            audio.play();  
+            document.removeEventListener("touchstart",play, false);  
+        };  
+    audio.play();  
+    document.addEventListener("WeixinJSBridgeReady", function () {  
+        play();  
+    }, false);  
+    document.addEventListener('YixinJSBridgeReady', function() {  
+        play();  
+    }, false);  
+    document.addEventListener("touchstart",play, false);  
+}  
+audioAutoPlay('audios');
 var offsetX = $("#loveHeart").width() / 2;
 var offsetY = $("#loveHeart").height() / 2 - 55;
 var together = new Date();
