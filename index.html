@@ -50,11 +50,26 @@
 			</div>
 		</div>
 	</div>
-	<audio controls="controls" autoplay="autoplay" >
+	<audio id="music1" controls="controls" autoplay="autoplay" >
 		<source src="getvoice.mp3" type="audio/mpeg" />
 	</audio>	
 	
 	<script type="text/javascript">
+var audio = document.getElementById('music1');
+$("#btn").bind("touchstart", function bf() {
+if(audio !== null) {
+//检测播放是否已暂停.audio.paused 在播放器播放时返回false.
+//alert(audio.paused);
+if(audio.paused) {
+audio.play(); //audio.play();// 这个就是播放
+$("#btn").addClass("active")
+} else {
+audio.pause(); // 这个就是暂停
+$("#btn").removeClass("active")
+}
+}
+})
+		
 var offsetX = $("#loveHeart").width() / 2;
 var offsetY = $("#loveHeart").height() / 2 - 55;
 var together = new Date();
